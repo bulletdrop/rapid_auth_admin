@@ -1,0 +1,125 @@
+<div class="modal fade user_editor_modal_id' . $user[0] . '" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">Key Editor</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+            <div class="card-box">
+                <ul class="nav nav-tabs tabs-bordered nav-justified">
+                    <li class="nav-item">
+                        <a href="#last_hwid_attempt" data-toggle="tab" aria-expanded="false" class="nav-link">
+                            Last HWID Fail
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#user_profile" data-toggle="tab" aria-expanded="true" class="nav-link">
+                            User Profile
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#current_hwid" data-toggle="tab" aria-expanded="false" class="nav-link active show">
+                            Current HWID
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane" id="last_hwid_attempt">
+                    <div class="col-sm-6 m-t-20">
+                        <div class="tab-pane active show" id="current_hwid">
+                        <dl class="row">
+                        <dt class="col-sm-6">Windows Username</dt>
+                        <dd class="col-sm-6">' . $user[15] . '</dd>
+
+                        <dt class="col-sm-6">GPU Name</dt>
+                        <dd class="col-sm-6">' . $user[16] . '</dd>
+
+                        <dt class="col-sm-6">GPU RAM</dt>
+                        <dd class="col-sm-6">' . $user[17] . '</dd>
+
+                        <dt class="col-sm-6">Drive count</dt>
+                        <dd class="col-sm-6">' . $user[18] . '</dd>
+
+                        <dt class="col-sm-6">CPU Name</dt>
+                        <dd class="col-sm-6">' . $user[19] . '</dd>
+
+                        <dt class="col-sm-6">CPU Cores</dt>
+                        <dd class="col-sm-6">' . $user[20] . '</dd>
+
+                        <dt class="col-sm-6">OS Caption</dt>
+                        <dd class="col-sm-6">' . $user[21] . '</dd>
+
+                        <dt class="col-sm-6">OS Serial Number</dt>
+                        <dd class="col-sm-6">' . $user[22] . '</dd>
+
+                        <dt class="col-sm-6">Last IP Address</dt>
+                        <dd class="col-sm-6">' . $user[23] . '</dd>
+                        </dl>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="tab-pane" id="user_profile">
+                    <form method="post">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Username</label>
+                            <div class="col-sm-10"> <input type="text" name="username" class="form-control" value="' . $user[1] . '"> </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Password</label>
+                            <div class="col-sm-10"> <input type="text" name="password" class="form-control" value=""> </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Note</label>
+                            <div class="col-sm-10"><textarea name="note" class="form-control" rows="5">' . $user[24] . '</textarea></div>
+                        </div>
+                        
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Active</label>
+                            <div class="col-sm-10"> <input name="active" type="checkbox" data-plugin="switchery" data-color="#039cfd"/></div>
+                        </div>
+
+                        <button name="submit" type="submit" value="' . $user[0] . '" class="btn btn-primary w-md">Save</button>
+                    </form>
+                    </div>
+                        <div class="tab-pane active show" id="current_hwid">
+                            <dl class="row">
+                            <dt class="col-sm-6">Windows Username</dt>
+                            <dd class="col-sm-6">' . $user[5] . '</dd>
+
+                            <dt class="col-sm-6">GPU Name</dt>
+                            <dd class="col-sm-6">' . $user[6] . '</dd>
+
+                            <dt class="col-sm-6">GPU RAM</dt>
+                            <dd class="col-sm-6">' . $user[7] . '</dd>
+
+                            <dt class="col-sm-6">Drive count</dt>
+                            <dd class="col-sm-6">' . $user[8] . '</dd>
+
+                            <dt class="col-sm-6">CPU Name</dt>
+                            <dd class="col-sm-6">' . $user[9] . '</dd>
+
+                            <dt class="col-sm-6">CPU Cores</dt>
+                            <dd class="col-sm-6">' . $user[10] . '</dd>
+
+                            <dt class="col-sm-6">OS Caption</dt>
+                            <dd class="col-sm-6">' . $user[11] . '</dd>
+
+                            <dt class="col-sm-6">OS Serial Number</dt>
+                            <dd class="col-sm-6">' . $user[12] . '</dd>
+
+                            <dt class="col-sm-6">Last IP Address</dt>
+                            <dd class="col-sm-6">' . $user[13] . '</dd>
+                            </dl>
+                        </div>
+                </div>
+            </div>
+                
+            <!-- Modal Body end-->
+            </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
