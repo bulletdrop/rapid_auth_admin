@@ -117,6 +117,14 @@ $nav_bar = ' <header id="topnav">
                 <li class="has-submenu">
                     <a href="manage_users_admin.php"><i class="mdi mdi-account-multiple"></i>Dashboard users</a>
                 </li>
+
+                <li class="has-submenu">
+                    <a href="admin_logs.php"><i class="mdi mdi-book-multiple"></i>Logs</a>
+                </li>
+
+                <li class="has-submenu">
+                    <a href="admin_tickets.php"><i class="mdi mdi-ticket-account "></i>Tickets</a>
+                </li>
             </ul>
             <!-- End navigation menu -->
 
