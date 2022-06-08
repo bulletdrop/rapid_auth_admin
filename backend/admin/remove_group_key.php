@@ -10,6 +10,7 @@ if (check_cookie())
     {
         $statement = $pdo->prepare("DELETE FROM dashboard_group_license_keys WHERE id = ?;");
         $statement->execute(array($_GET["remove"]));
+        write_log("Admin: " . get_username_by_uid(get_cookie_information()[2]) . "\nremoved group key: " . $_GET["remove"], true);
         echo '<script>window.location.href = "../../dashboard/admin_license_manager.php";</script>';
     }
 }

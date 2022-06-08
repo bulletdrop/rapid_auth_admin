@@ -43,7 +43,7 @@ if (check_cookie())
         $user_info["ban_message"], 
         $user_info["uid"]));
         
-        
+        write_log("Admin: " . get_username_by_uid(get_cookie_information()[2]) . "\nedited user: " . get_username_by_uid($_GET["uid"]), true);
         echo '<script>window.location.href = "../../dashboard/manage_users_admin.php";</script>';
     }
 }
