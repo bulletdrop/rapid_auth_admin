@@ -27,4 +27,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/support/suppor
 //Admin stuff
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/admin/license_key_manager.php';
+
+include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/admin/manage_users_admin.php';
 ?>

@@ -105,6 +105,18 @@ $nav_bar = ' <header id="topnav">
                         <li><a href="manage_group.php">Manage your group</a></li>
                     </ul>
                 </li>
+
+                <li class="has-submenu">
+                    <a href="#"><i class="mdi mdi-account-multiple"></i>Group license keys</a>
+                    <ul class="submenu">
+                        <li><a href="create_group_license_key.php">Create group license key</a></li>
+                        <li><a href="admin_license_manager.php">Manage group license keys</a></li>
+                    </ul>
+                </li>
+
+                <li class="has-submenu">
+                    <a href="manage_users_admin.php"><i class="mdi mdi-account-multiple"></i>Dashboard users</a>
+                </li>
             </ul>
             <!-- End navigation menu -->
 
