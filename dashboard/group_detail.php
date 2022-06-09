@@ -48,6 +48,29 @@
         ?>
         <!-- End Navigation Bar-->
 
+        <!-- Add Memeber Modal -->
+        <div class="modal fade add_member_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="mySmallModalLabel">Are you sure?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                    <?php
+                        echo '<form method="post" action="../backend/admin/groups/add_to_group.php?gid=' . $_GET["gid"] . '">';
+                    ?>
+                    <label>Username</label>
+                    <input name="new_member_username" type="text" required="" class="form-control">
+                    <input type="submit" name="submit" value="Add" class="btn btn-success w-md">
+                    </form>
+                    
+                        
+                    </div>
+                    
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
         <div class="wrapper">
             <div class="container-fluid">
@@ -67,14 +90,14 @@
                         <div class="card-box">
                         <div class="card-box">
                             <h4 class="m-t-0 header-title">Member</h4>
-
+                            <button onclick="open_add_member_modal()" type="button" class="btn btn-primary w-md">Add to group</button>
                             <table class="table mb-0">
                                 <thead>
                                 <tr>
                                     <th>UID</th>
                                     <th>Username</th>
                                     <th>Owner</th>
-                                    <th>Action</th>
+                                    <th>Action (s)</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -98,7 +121,16 @@
                                                     echo '<td>No</td>';
 
                                                 if ($member != $group_info["owner_uid"])
-                                                    echo '<td><a href="../backend/admin/groups/set_group_owner.php?gid=' . $_GET["gid"] . '&uid=' . $member .'"><button style="margin-left: 1em;" type="button" class="btn btn-primary w-md">Set owner</button></a></td>';
+                                                {
+                                                    echo '<td><a href="../backend/admin/groups/set_group_owner.php?gid=' . $_GET["gid"] . '&uid=' . $member .'"><button type="button" class="btn btn-primary w-md">Set owner</button></a>';
+                                                    echo '<a href="../backend/admin/groups/kick_member.php?gid=' . $_GET["gid"] . '&uid=' . $member .'"><button style="margin-left: 1em;" type="button" class="btn btn-danger w-md">Kick</button></a></td>';
+                                                }
+                                                else
+                                                {
+                                                    echo '<td>None</td>';
+                                                }
+                                                    
+
                                             }
                                         }
 
@@ -139,6 +171,12 @@
         ?>
 
     </body>
+    <script>
+    function open_add_member_modal()
+    {
+        $(".add_member_modal").modal();
+    }
+</script>
 </html>
 
 <?php

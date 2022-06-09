@@ -48,12 +48,15 @@ function uid_in_group($uid)
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
 
-    $statement = $pdo->prepare("SELECT gid FROM dashboard_users WHERE uid=? AND gid> -1");
+    $statement = $pdo->prepare("SELECT gid FROM dashboard_users WHERE uid=?");
     $statement->execute(array($uid)); 
     
-    if ($statement->rowCount() == 0)
-        return false;
+    while($row = $statement->fetch()) {
+        if ($row["gid"] == "-1")
+            return false;
 
+    }
+    
     return true;
 }
 
