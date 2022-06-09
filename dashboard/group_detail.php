@@ -4,8 +4,8 @@
         <meta charset="utf-8" />
         <title>Rapid Auth - Group details</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-        <meta content="Coderthemes" name="author" />
+        <meta content="Rapid Auth" name="A secure and high performance auth system" />
+		<meta content="Rapid Auth" name="bullet" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -108,6 +108,36 @@
                     <h4 class="page-title">Dashboard</h4>
                 </div>
                 <!-- End page title box -->
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h4 class="header-title">API key</h4>
+                            <form method="post">
+                            <div class="form-group row">
+                                <div class="col-sm-10"> 
+                            
+                                <?php
+                                    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
+                                    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
+
+                                    if (is_admin(get_cookie_information()[2]))
+                                    {   
+                                        echo '<input type="text" name="api_key" class="form-control" value="' . get_api_key_by_gid($_GET["gid"]) . '"> </div>';;
+                                    }
+                                ?>
+
+                            
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-10">
+                                    <button name="regenerate" type="submit" class="btn btn-primary w-md">Regenerate</button>
+                                </div>
+                            </form>
+                            </div>
+                        </div> <!-- end card-box -->
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
                 
                 <div class="row">
                     <div class="col-12">
@@ -280,6 +310,14 @@
     echo '<script>document.getElementById("dashboard_profile_picture_1").src = "' . $dashboard_profile_picture_url . '";</script>';
 
     //This is the end of the part for every website
+    $uid = get_cookie_information()[2];
+    if (isset($_POST["regenerate"]) && is_admin($uid))
+    {
+        regenerate_api_key($_GET["gid"]);
+        write_log("Admin " . get_username_by_uid($uid) . "\nregenerated api key for group " . $_GET["gid"]);
+        echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/group_detail.php?gid=' . $_GET["gid"] . '";</script>';
+    }
+                
 
     
     

@@ -4,8 +4,8 @@
         <meta charset="utf-8" />
         <title>Rapid Auth - Group Manager</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-        <meta content="Coderthemes" name="author" />
+        <meta content="Rapid Auth" name="A secure and high performance auth system" />
+		<meta content="Rapid Auth" name="bullet" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
          <!-- jvectormap -->

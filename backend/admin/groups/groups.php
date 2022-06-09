@@ -28,5 +28,13 @@ function get_group_details_by_gid($gid)
     }
 }
 
+function regenerate_api_key($gid)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
+    
+    $statement = $pdo->prepare("UPDATE dashboard_groups SET api_key=? WHERE gid=?");
+    $statement->execute(array(generateRandomString(64), $gid));   
+}
 
 ?>
