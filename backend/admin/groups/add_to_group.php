@@ -29,12 +29,12 @@ if (check_cookie())
             update_user_table_gid($new_member_uid, $gid);
             update_group_array_admin($gid, $new_member_uid);
             
-            //echo '<script>window.location.href = "../../../dashboard/group_detail.php?gid=' . $_GET["gid"] . '";</script>';
+            echo '<script>window.location.href = "../../../dashboard/group_detail.php?gid=' . $_GET["gid"] . '";</script>';
         }
         
     }
 }
-//echo '<script>window.location.href = "../../../dashboard/auth-login.php";</script>';
+echo '<script>window.location.href = "../../../dashboard/auth-login.php";</script>';
 
 function update_user_table_gid($uid, $gid)
 {

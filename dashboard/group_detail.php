@@ -72,6 +72,30 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
+        <!-- Add Product Modal -->
+        <div class="modal fade add_product_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="mySmallModalLabel">Add a product</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                    <?php
+                        echo '<form method="post" action="../backend/admin/groups/add_product.php?gid=' . $_GET["gid"] . '">';
+                    ?>
+                    <label>Product Name</label>
+                    <input name="product_name" type="text" required="" class="form-control">
+                    <input type="submit" name="submit" value="Add" class="btn btn-success w-md">
+                    </form>
+                    
+                        
+                    </div>
+                    
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
         <div class="wrapper">
             <div class="container-fluid">
 
@@ -129,7 +153,56 @@
                                                 {
                                                     echo '<td>None</td>';
                                                 }
+                                                echo '</tr>';
                                                     
+
+                                            }
+                                        }
+
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                        <div class="card-box">
+                            <h4 class="m-t-0 header-title">Products</h4>
+                            <button onclick="open_add_product_modal()" type="button" class="btn btn-primary w-md">Add product</button>
+                            <table class="table mb-0">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
+                                        include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
+
+                                        if (is_admin(get_cookie_information()[2]))
+                                        {   
+                                            $group_info = get_group_details_by_gid($_GET["gid"]);
+                                            $product_array = json_decode($group_info["products_array"]);
+
+                                            $id = 0;
+                                            foreach ($product_array as $product)
+                                            {
+                                                echo '<tr>';
+                                                echo '<td>' . $id . '</td>';
+                                                echo '<td>' . $product . '</td>';
+                                                echo '<td><a href="../backend/admin/groups/remove_product.php?index=' . $id .'&gid=' . $_GET["gid"] . '"><button type="button" class="btn btn-danger w-md">Remove</button></a></td>';
+                                                echo '</tr>';
+                                                $id++;    
 
                                             }
                                         }
@@ -175,6 +248,11 @@
     function open_add_member_modal()
     {
         $(".add_member_modal").modal();
+    }
+
+    function open_add_product_modal()
+    {
+        $(".add_product_modal").modal();
     }
 </script>
 </html>
