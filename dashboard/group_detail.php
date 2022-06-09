@@ -138,6 +138,22 @@
                         </div> <!-- end card-box -->
                     </div> <!-- end col -->
                 </div> <!-- end row -->
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h4 class="header-title">Options</h4>
+                            <?php
+                                echo '<a href="admin_loader_user_manager.php?gid=' . $_GET["gid"] . '">';
+                            ?>
+                            <button type="button" class="btn btn-primary w-md">View loader users</button></a>
+                            <?php
+                                echo '<a href="admin_key_manager.php?gid=' . $_GET["gid"] . '">';
+                            ?>
+                            <button type="button" class="btn btn-primary w-md" style="margin-left: 1em;">View license keys</button></a>
+                        </div> <!-- end card-box -->
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
                 
                 <div class="row">
                     <div class="col-12">
@@ -246,9 +262,8 @@
                     </div><!-- end col -->
                 </div>
                 <!-- end row -->
-
-            </div> <!-- end container -->
-        </div>
+                </div> <!-- end container -->
+        </div>  
         <!-- end wrapper -->
         <!-- Footer -->
         <footer class="footer">

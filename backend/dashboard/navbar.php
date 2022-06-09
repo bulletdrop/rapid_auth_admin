@@ -107,23 +107,24 @@ $nav_bar = ' <header id="topnav">
                 </li>
 
                 <li class="has-submenu">
-                    <a href="#"><i class="mdi mdi-account-multiple"></i>Group license keys</a>
+                    <a href="#" style="color: #bc3c30;"><i class="mdi mdi-account-multiple"></i>Groups</a>
                     <ul class="submenu">
                         <li><a href="create_group_license_key.php">Create group license key</a></li>
                         <li><a href="admin_license_manager.php">Manage group license keys</a></li>
+                        <li><a href="admin_all_groups.php">All groups</a></li>
                     </ul>
                 </li>
 
                 <li class="has-submenu">
-                    <a href="manage_users_admin.php"><i class="mdi mdi-account-multiple"></i>Dashboard users</a>
+                    <a style="color: #bc3c30;" href="manage_users_admin.php"><i class="mdi mdi-account-multiple"></i>Dashboard users</a>
                 </li>
 
                 <li class="has-submenu">
-                    <a href="admin_logs.php"><i class="mdi mdi-book-multiple"></i>Logs</a>
+                    <a style="color: #bc3c30;" href="admin_logs.php"><i class="mdi mdi-book-multiple"></i>Logs</a>
                 </li>
 
                 <li class="has-submenu">
-                    <a href="admin_tickets.php"><i class="mdi mdi-ticket-account "></i>Tickets</a>
+                    <a style="color: #bc3c30;" href="admin_tickets.php"><i class="mdi mdi-ticket-account "></i>Tickets</a>
                 </li>
             </ul>
             <!-- End navigation menu -->
