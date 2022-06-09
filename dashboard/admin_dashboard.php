@@ -58,49 +58,29 @@
 
                 <div class="card-box">
                     <h1>Message of the day</h1>
-                    <p id="message_of_the_day">
-                    <?php   
-                        include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
-                        include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
-                    
-                        if (!check_cookie())
-                            echo '<script>window.location.href = "auth-login.php";</script>';
-                        else
-                        {
-                            include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/dashboard/message_of_the_day.php';
-                            $dashboard_username = get_cookie_information()[0];
-                            echo str_replace("{username}", $dashboard_username,  get_message_of_the_day());
-                        }
-                    ?>
-
+                    <p class="text-muted m-b-30 font-14">
+                        <code>{username}</code> = the username of the logged in user
                     </p>
+                    <form method="post">
+                        <textarea name="message_of_the_day_text" class="form-control" rows="5"></textarea>
+                    
+                        <button style="margin-top: 1em" type="submit" name="message_of_the_day" class="btn btn-primary waves-effect waves-light">
+                                    Save
+                        </button>
+                            
+                    </form>
                 </div> <!-- end card-box-->
 
                 </div> <!-- end col -->
 
                     <div class="col-xl-4">
                         <div class="card-box">
-                            <h4 class="header-title">Totals Users</h4>
-                            <div class="mb-3 mt-4">
-                                <h2 id="total_users_id" class="font-weight-light">500</h2>
-                            </div>
-                            <div class="chartjs-chart dash-sales-chart">
-                                <canvas id="user-chart"></canvas>
-                            </div>
-                        </div><!-- end card-box-->
-
-                    </div> <!-- end col -->
-
-
-                    <div class="col-xl-4">
-                        <div class="card-box">
-                            <h4 class="header-title">Totals Keys</h4>
-                            <div class="mb-3 mt-4">
-                                <h2 id="total_keys_id" class="font-weight-light">400</h2>
-                            </div>
-                            <div class="chartjs-chart dash-sales-chart">
-                                <canvas id="key-chart"></canvas>
-                            </div>
+                            <h4 class="header-title">Stats dump</h4>
+                            <form method="post">
+                            <button type="submit" name="dump_stats" class="btn btn-primary waves-effect waves-light">
+                                        Take a new stats dump
+                            </button>
+                            </form>
                         </div><!-- end card-box-->
 
                     </div> <!-- end col -->
@@ -150,9 +130,8 @@
 
 <?php
     // error_reporting(0);
-    //include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
-    //include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
-    
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
 
     //This Part should be on every dashboard site expect login and sign up 
     if (!check_cookie())
@@ -173,7 +152,6 @@
 
     //This is the end of the part for every website
 
-    
 
     echo '<script>document.getElementById("total_users_id").innerHTML = "' . get_total_users_last_record() . '";</script>';
 
@@ -181,6 +159,18 @@
 
     echo get_js();  
 
-    
 
+    if (isset($_POST["dump_stats"]) && is_admin(get_cookie_information()[2]))
+    {
+        insert_new_stats();
+        write_log("Admin " . $dashboard_username . " took a new Stats dump" , true);
+        echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/admin_dashboard.php";</script>';
+    }
+
+    if (isset($_POST["message_of_the_day_text"]) && is_admin(get_cookie_information()[2]))
+    {
+        update_message_of_the_day($_POST["message_of_the_day_text"]);
+        write_log("Admin " . $dashboard_username . " changed the message of the day\nTo: " . $_POST["message_of_the_day_text"] , true);
+        echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/admin_dashboard.php";</script>';
+    }
 ?>

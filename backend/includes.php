@@ -35,4 +35,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/admin/logs.php
 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/admin/admin_tickets.php';
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/admin/groups/groups.php';
+
+include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/admin/stats_dump.php';
+
+include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/admin/dashboard_settings.php';
 ?>
