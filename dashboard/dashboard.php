@@ -58,22 +58,7 @@
 
                 <div class="card-box">
                     <h1>Message of the day</h1>
-                    <p id="message_of_the_day">
-                    <?php   
-                        include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
-                        include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
-                    
-                        if (!check_cookie())
-                            echo '<script>window.location.href = "auth-login.php";</script>';
-                        else
-                        {
-                            include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/dashboard/message_of_the_day.php';
-                            $dashboard_username = get_cookie_information()[0];
-                            echo str_replace("{username}", $dashboard_username,  get_message_of_the_day());
-                        }
-                    ?>
-
-                    </p>
+                    <p id="message_of_the_day">asd</p>
                 </div> <!-- end card-box-->
 
                 </div> <!-- end col -->
@@ -149,15 +134,15 @@
 </html>
 
 <?php
-    // error_reporting(0);
-    //include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
-    //include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
-    
+    //error_reporting(0);
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
 
     //This Part should be on every dashboard site expect login and sign up 
+    /*
     if (!check_cookie())
         echo '<script>window.location.href = "auth-login.php";</script>';
-
+*/
     $dashboard_username = get_cookie_information()[0];
     $dashboard_profile_picture_url = get_profile_picture_url_by_uid(get_cookie_information()[2]);
     
@@ -173,14 +158,30 @@
 
     //This is the end of the part for every website
 
+    $statement = $pdo->prepare("SELECT message_of_the_day FROM `dashboard_settings` WHERE id=1 ");
+    $statement->execute(array(0));   
     
+    while($row = $statement->fetch()) {
+        $message_of_the_day = $row["message_of_the_day"];    
+    }
+    
+
+    $message_of_the_day = str_replace("{username}", $dashboard_username,  $message_of_the_day);
+
+    echo "\n<script>document.getElementById('message_of_the_day').innerHTML = `$message_of_the_day`;</script>\n";
+
+
 
     echo '<script>document.getElementById("total_users_id").innerHTML = "' . get_total_users_last_record() . '";</script>';
 
     echo '<script>document.getElementById("total_keys_id").innerHTML = "' . get_total_keys_last_record() . '";</script>';
 
-    echo get_js();  
+    echo get_js();
 
     
+
+    
+        
+        
 
 ?>
