@@ -6,7 +6,7 @@ function add_cookie($username, $password, $uid)
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
 
-    $cookie_value = encrypt_data($username . "*#*" . $password . "*#*" . $uid . "*#*" . $_SERVER['REMOTE_ADDR'] . "*#*" . $salt, $key);
+    $cookie_value = encrypt_data($username . "*#*" . $password . "*#*" . $uid . "*#*" . $_SERVER["HTTP_CF_CONNECTING_IP"] . "*#*" . $salt, $key);
     //setcookie("user_cookie", $cookie_value, time()+86400, "/rapid_auth");
     echo '<script>document.cookie = "user_cookie=' . $cookie_value . '; path=/rapid_auth_admin";</script>';
 }
@@ -25,10 +25,10 @@ function check_cookie()
         return false;
     
         
-    if ($cookie_data[3] != $_SERVER['REMOTE_ADDR'])
+    if ($cookie_data[3] != $_SERVER["HTTP_CF_CONNECTING_IP"])
         return false;
     
-    if (get_last_ip_by_uid($cookie_data[2]) != $_SERVER['REMOTE_ADDR'])
+    if (get_last_ip_by_uid($cookie_data[2]) != $_SERVER["HTTP_CF_CONNECTING_IP"])
         return false;
     
     if (!username_matches_password($cookie_data[0], $cookie_data[1]))

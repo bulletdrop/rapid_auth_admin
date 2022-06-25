@@ -19,7 +19,7 @@ function update_last_ip($username)
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
 
     $statement = $pdo->prepare("UPDATE dashboard_users SET last_ip = ? WHERE username= ?;");
-    $statement->execute(array($_SERVER['REMOTE_ADDR'], encrypt_data($username, $key)));
+    $statement->execute(array($_SERVER["HTTP_CF_CONNECTING_IP"], encrypt_data($username, $key)));
 }
 
 ?>
