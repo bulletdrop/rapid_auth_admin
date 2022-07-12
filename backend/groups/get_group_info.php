@@ -15,6 +15,52 @@ function get_group_name_by_gid($gid)
     return "-1";
 }
 
+
+function get_public_key_by_gid($gid)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT public_key FROM dashboard_groups WHERE gid=?");
+    $statement->execute(array($gid));  
+    
+    while($row = $statement->fetch()) {
+        return $row["public_key"];
+    }
+    
+    return "-1";
+}
+
+function get_private_key_by_gid($gid)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT private_key FROM dashboard_groups WHERE gid=?");
+    $statement->execute(array($gid));  
+    
+    while($row = $statement->fetch()) {
+        return $row["private_key"];
+    }
+    
+    return "-1";
+}
+
+function get_private_key_password_by_gid($gid)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT private_key_password FROM dashboard_groups WHERE gid=?");
+    $statement->execute(array($gid));  
+    
+    while($row = $statement->fetch()) {
+        return $row["private_key_password"];
+    }
+    
+    return "-1";
+}
+
 function get_group_gid_by_group_name($group_name)
 {
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
