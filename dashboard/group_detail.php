@@ -158,7 +158,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box">
-                            <h4 class="m-t-0 header-title">PGP</h4>
+                            <h4 class="m-t-0 header-title">OpenSSL</h4>
                             <?php
                                 include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
                                 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
@@ -168,22 +168,13 @@
                                 {
                                     $gid = $_GET["gid"];
                                     echo '
-                                    <form method="post" action="../backend/groups/update_pgp.php?gid=' . $_GET["gid"] . '">
+                                    <form method="post" action="../backend/groups/update_openssl.php?gid=' . $_GET["gid"] . '">
                                     <div class="col-lg-12">
                                     <div class="card-box">
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Public Key</label>
-                                            <textarea name="public_key" class="form-control" rows="5">'.htmlspecialchars(get_public_key_by_gid($gid)).'</textarea>
-                                        </div>
 
                                         <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Private Key</label>
-                                            <textarea name="private_key" class="form-control" rows="5">'.htmlspecialchars(get_private_key_by_gid($gid)).'</textarea>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Private Key Password</label>
-                                            <input name="private_key_password" class="form-control" rows="5" value="'. htmlspecialchars(get_private_key_password_by_gid($gid)).'">
+                                            <label class="col-sm-2 col-form-label">OpenSSL Crypting Key</label>
+                                            <input name="openssl_crypting_key" class="form-control" rows="5" value="'. htmlspecialchars(get_openssl_crypting_key_by_gid($gid)).'">
                                         </div>
                                     </div> <!-- end card-box -->
                                     <input type="submit" value="Save" class="btn btn-primary w-md">
