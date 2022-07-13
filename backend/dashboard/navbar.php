@@ -126,6 +126,10 @@ $nav_bar = ' <header id="topnav">
                 <li class="has-submenu">
                     <a style="color: #bc3c30;" href="admin_tickets.php"><i class="mdi mdi-ticket-account "></i>Tickets</a>
                 </li>
+
+                <li class="has-submenu">
+                    <a style="color: #bc3c30;" href="admin_dashboard.php"><i class="mdi mdi-view-dashboard "></i>Admin Dashboard</a>
+                </li>
             </ul>
             <!-- End navigation menu -->
 
