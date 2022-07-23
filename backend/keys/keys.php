@@ -15,6 +15,21 @@ function get_keys_by_gid($gid)
     return $keys;
 }
 
+function get_key_creator_uid_by_kid($kid, $gid)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT creator_uid FROM loader_keys WHERE owner_gid=? AND kid=?");
+    $statement->execute(array($gid, $kid));  
+    
+    while($row = $statement->fetch()) {
+        return $row["creator_uid"];
+    }
+    
+    return "-1";
+}
+
 function update_key($gid, $kid, $loader_user_id, $days_left, $freezed, $lifetime, $key_name)
 {
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
