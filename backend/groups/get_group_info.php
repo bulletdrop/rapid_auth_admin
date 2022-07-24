@@ -30,6 +30,21 @@ function get_openssl_crypting_key_by_gid($gid)
     return "-1";
 }
 
+function get_bot_api_key_by_gid($gid)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT discord_bot_api_key FROM dashboard_groups WHERE gid=?");
+    $statement->execute(array($gid));  
+    
+    while($row = $statement->fetch()) {
+        return $row["discord_bot_api_key"];
+    }
+    
+    return "-1";
+}
+
 function get_group_gid_by_group_name($group_name)
 {
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';

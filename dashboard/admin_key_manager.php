@@ -39,8 +39,6 @@
         <link href="assets/libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet" />
         <link href="assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" />
         <link href="assets/libs/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
-
-
     </head>
 
     <body>
@@ -153,10 +151,7 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">Freezed</label>
                                                             <div class="col-sm-10"> <input name="freezed" type="checkbox"';
-
                                                             
-                                                        
-                                                        
                                                         if ($key[5] != 0)
                                                             echo ' checked ';
 

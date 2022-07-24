@@ -37,4 +37,13 @@ function regenerate_api_key($gid)
     $statement->execute(array(generateRandomString(64), $gid));   
 }
 
+function regenerate_discord_bot_api_key($gid)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
+    
+    $statement = $pdo->prepare("UPDATE dashboard_groups SET discord_bot_api_key=? WHERE gid=?");
+    $statement->execute(array(generateRandomString(64), $gid));   
+}
+
 ?>

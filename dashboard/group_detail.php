@@ -113,28 +113,53 @@
                     <div class="col-12">
                         <div class="card-box">
                             <h4 class="header-title">API key</h4>
-                            <form method="post">
-                            <div class="form-group row">
-                                <div class="col-sm-10"> 
-                            
-                                <?php
-                                    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
-                                    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
+                                <form method="post">
+                                    <div class="form-group row">
+                                        <div class="col-sm-10"> 
+                                    
+                                        <?php
+                                            include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
+                                            include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
 
-                                    if (is_admin(get_cookie_information()[2]))
-                                    {   
-                                        echo '<input type="text" name="api_key" class="form-control" value="' . get_api_key_by_gid($_GET["gid"]) . '"> </div>';;
-                                    }
-                                ?>
+                                            if (is_admin(get_cookie_information()[2]))
+                                            {   
+                                                echo '<input type="text" name="api_key" class="form-control" value="' . get_api_key_by_gid($_GET["gid"]) . '"> </div>';;
+                                            }
+                                        ?>
 
-                            
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-10">
-                                    <button name="regenerate" type="submit" class="btn btn-primary w-md">Regenerate</button>
-                                </div>
+                                    
+                                        </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-10">
+                                            <button name="regenerate" type="submit" class="btn btn-primary w-md">Regenerate</button>
+                                        </div>
+                                    </div>
                             </form>
-                            </div>
+
+
+                            <h4 class="header-title">Discod Bot API key</h4>
+                                <form method="post">
+                                    <div class="form-group row">
+                                        <div class="col-sm-10"> 
+                                    
+                                        <?php
+                                            include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
+                                            include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
+
+                                            if (is_admin(get_cookie_information()[2]))
+                                            {   
+                                                echo '<input type="text" name="discord_api_key" class="form-control" value="' . get_bot_api_key_by_gid($_GET["gid"]) . '"> </div>';;
+                                            }
+                                        ?>
+
+                                    
+                                        </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-10">
+                                            <button name="discorde_regenerate" type="submit" class="btn btn-primary w-md">Regenerate</button>
+                                        </div>
+                                    </div>
+                            </form>
                         </div> <!-- end card-box -->
                     </div> <!-- end col -->
                 </div> <!-- end row -->
@@ -362,7 +387,14 @@
     if (isset($_POST["regenerate"]) && is_admin($uid))
     {
         regenerate_api_key($_GET["gid"]);
-        write_log("Admin " . get_username_by_uid($uid) . "\nregenerated api key for group " . $_GET["gid"]);
+        write_log("Admin " . get_username_by_uid($uid) . "\nregenerated API key for group " . $_GET["gid"]);
+        echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/group_detail.php?gid=' . $_GET["gid"] . '";</script>';
+    }
+
+    if (isset($_POST["discorde_regenerate"]) && is_admin($uid))
+    {
+        regenerate_discord_bot_api_key($_GET["gid"]);
+        write_log("Admin " . get_username_by_uid($uid) . "\nregenerated Discord Bot API key for group " . $_GET["gid"]);
         echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/group_detail.php?gid=' . $_GET["gid"] . '";</script>';
     }
                 
