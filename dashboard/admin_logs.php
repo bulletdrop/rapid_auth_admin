@@ -60,7 +60,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box">
-                            <h4 class="header-title">User Manager</h4>
+                            <h4 class="header-title">Logs</h4>
 
                             <table id="datatable" class="table table-bordered dt-responsive nowrap">
                                 <thead>
