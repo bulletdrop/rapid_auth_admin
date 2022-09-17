@@ -18,10 +18,9 @@
 
         <!-- App css -->
         <!-- build:css -->
-        <link href="assets/css/app.css" rel="stylesheet" type="text/css" />
-        <script> 
-            function showError(msg) { document.getElementById("error_msg").innerHTML  = msg; document.getElementById("error_msg").style.opacity = 1; }
-        </script>
+        
+        <!-- Toastr CSS -->
+        <link href="assets/css/toastr.css" rel="stylesheet"/>
         <!-- endbuild -->
     </head>
     <body class="bg-account-pages">
@@ -44,12 +43,6 @@
                                             </a>
                                         </h2>
                                     </div>
-
-                                    <div class="row mt-3">
-                                            <div class="col-12 text-center">
-                                                <p id="error_msg" style="color:#d64040; opacity: 0;">Wrong Username / Password</b></a></p>
-                                            </div>
-                                    </div> <!-- end row-->
 
                                     <div class="account-content">
                                         <form method="post">
@@ -102,6 +95,10 @@
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
+
+        
+        <!-- Toastr js -->
+        <script src="assets/js/toastr.js"></script>
     </body>
 </html>
 
@@ -122,7 +119,7 @@
         switch (false)
         {
             case (strlen($post_password) > 4 && strlen($post_username) > 3):
-                echo '<script>showError("Input too short")</script>';
+                echo "<script>toastr.error('Input too short', 'Error')</script>";
                 break;
             case (!valid_input($post_username, $post_password)):
                     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/security/cookies.php';
@@ -131,7 +128,7 @@
                     echo '<script>window.location.href = "dashboard.php";</script>';
                 break;
             default:
-                echo '<script>showError("Wrong Username / Password")</script>';
+                echo "<script>toastr.error('Wrong Username / Password', 'Error')</script>";
                 break;
         }
     }
