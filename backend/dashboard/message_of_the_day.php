@@ -7,7 +7,7 @@ function get_message_of_the_day()
     
     
     $statement = $pdo->prepare("SELECT message_of_the_day FROM `dashboard_settings` WHERE id=1 ");
-    $statement->execute(array(0));   
+    $statement->execute(array());   
     
     while($row = $statement->fetch()) {
         return $row["message_of_the_day"];    

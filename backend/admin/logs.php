@@ -8,7 +8,7 @@ function get_all_logs()
     $all_logs = array();
 
     $statement = $pdo->prepare("SELECT * FROM logs");
-    $statement->execute(array(0));   
+    $statement->execute(array());   
     while($row = $statement->fetch()) {
         array_push($all_logs, $row);
     }

@@ -159,7 +159,7 @@
     //This is the end of the part for every website
 
     $statement = $pdo->prepare("SELECT message_of_the_day FROM `dashboard_settings` WHERE id=1 ");
-    $statement->execute(array(0));   
+    $statement->execute(array());   
     
     while($row = $statement->fetch()) {
         $message_of_the_day = $row["message_of_the_day"];    

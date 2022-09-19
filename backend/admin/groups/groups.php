@@ -8,7 +8,7 @@ function get_all_groups()
     $groups = array();
 
     $statement = $pdo->prepare("SELECT * FROM dashboard_groups");
-    $statement->execute(array(0));   
+    $statement->execute(array());   
     while($row = $statement->fetch()) {
         array_push($groups, $row);
     }

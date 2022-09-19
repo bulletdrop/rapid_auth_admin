@@ -14,7 +14,7 @@ function get_total_users()
     
     
     $statement = $pdo->prepare("SELECT total_users FROM `statistics` ORDER BY id DESC LIMIT 12 ");
-    $statement->execute(array(0));   
+    $statement->execute(array());   
     $last_10_stats = array();
     
     while($row = $statement->fetch()) {
@@ -31,7 +31,7 @@ function get_total_users_last_record()
     
     
     $statement = $pdo->prepare("SELECT total_users FROM `statistics` ORDER BY id DESC LIMIT 1");
-    $statement->execute(array(0));   
+    $statement->execute(array());   
     $total_users = 0;
     
     while($row = $statement->fetch()) {
@@ -48,7 +48,7 @@ function get_total_keys_last_record()
     
     
     $statement = $pdo->prepare("SELECT total_keys FROM `statistics` ORDER BY id DESC LIMIT 1");
-    $statement->execute(array(0));   
+    $statement->execute(array());   
     $total_keys = 0;
     
     while($row = $statement->fetch()) {
@@ -65,7 +65,7 @@ function get_total_keys()
     
     
     $statement = $pdo->prepare("SELECT total_keys FROM `statistics` ORDER BY id DESC LIMIT 12 ");
-    $statement->execute(array(0));   
+    $statement->execute(array());   
     $last_10_stats = array();
     
     while($row = $statement->fetch()) {

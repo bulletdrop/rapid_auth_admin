@@ -8,7 +8,7 @@ function get_all_users()
     $all_users = array();
 
     $statement = $pdo->prepare("SELECT * FROM dashboard_users");
-    $statement->execute(array(0));   
+    $statement->execute(array());   
     while($row = $statement->fetch()) {
         array_push($all_users, $row);
     }
