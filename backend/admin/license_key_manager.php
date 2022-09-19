@@ -8,7 +8,7 @@ function get_license_keys()
     $license_keys = array();
 
     $statement = $pdo->prepare("SELECT id, key_name, used FROM dashboard_group_license_keys");
-    $statement->execute(array(0));   
+    $statement->execute();   
     while($row = $statement->fetch()) {
         array_push($license_keys, array("id" => $row["id"], "key_name" => decrypt_data($row["key_name"], $key), "used" => $row["used"]));
     }

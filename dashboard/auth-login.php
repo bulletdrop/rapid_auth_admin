@@ -12,13 +12,13 @@
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
         <!-- Icons css -->
-        <link href="assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" type="css" />
         <link href="assets/libs/dripicons/webfont/webfont.css" rel="stylesheet" type="text/css" />
         <link href="assets/libs/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css" />
 
         <!-- App css -->
         <!-- build:css -->
-        
+        <link href="assets/css/app.css" rel="stylesheet" type="text/css" />
         <!-- Toastr CSS -->
         <link href="assets/css/toastr.css" rel="stylesheet"/>
         <!-- endbuild -->
@@ -103,7 +103,7 @@
 </html>
 
 <?php
-    error_reporting(0);
+    //error_reporting(0);
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
 
