@@ -95,4 +95,14 @@ function get_product_name_by_kid_and_gid($kid, $gid)
     return "0";
 }
 
+function count_loader_keys_by_gid($gid)
+{
+    include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
+
+    $statement = $pdo->prepare("SELECT kid FROM loader_keys WHERE owner_gid=?");
+    $statement->execute(array($gid)); 
+    
+    return $statement->rowCount();
+}
 ?>

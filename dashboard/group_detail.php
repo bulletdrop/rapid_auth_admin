@@ -273,6 +273,42 @@
                 </div>
                 <!-- end row -->
 
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h4 class="m-t-0 header-title">Rank</h4>
+                            <?php
+                                include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
+                                include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
+                                
+                                if (is_admin(get_cookie_information()[2]))
+                                {
+                                    $gid = $_GET["gid"];
+                                    $rid = get_rank_by_gid($gid);
+
+                                    echo '
+                                    <div class="col-lg-12">
+                                    <div class="card-box">
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Current Rank: ' . get_rank_name_by_rid($rid) . '</label>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Keys: ' . count_loader_keys_by_gid($gid) . ' / ' . get_max_keys_by_rid($rid) . '</label>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Members: ' . count_group_members_by_gid($gid) . ' / ' . get_max_members_by_rid($rid) . '</label>
+                                        </div>
+                                    </div> <!-- end card-box -->
+                                    </form>
+                                </div>
+                                    ';
+                                }
+                            ?>
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->                    
+
 
                 <div class="row">
                     <div class="col-12">

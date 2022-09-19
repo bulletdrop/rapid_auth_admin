@@ -75,6 +75,22 @@
                                 </div>
 
                                 <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Rank<span class="text-danger">*</span></label>
+                                    <div class="col-sm-10">
+                                        <select name="rank" class="form-control">
+                                        <?php
+                                            include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
+                                            $ranks = get_all_ranks();
+                                            foreach ($ranks as $rank)
+                                            {
+                                                echo '<option value="'.$rank['rid'].'">'.$rank['rank_name'].'</option>';
+                                            }
+                                        ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Key Name<span class="text-danger">*</span></label>
                                     <div class="col-sm-10">
                                         <input id="key_name" name="key_name" type="text" required="" class="form-control">
@@ -103,6 +119,22 @@
                                     <label class="col-md-2 col-form-label"></label>
                                     <div class="col-md-10">
                                     <button type="button" onclick="generate_key_mass()" class="btn btn-primary w-md">Generate</button>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Rank<span class="text-danger">*</span></label>
+                                    <div class="col-sm-10">
+                                        <select name="rank_mass" class="form-control">
+                                        <?php
+                                            include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
+                                            $ranks = get_all_ranks();
+                                            foreach ($ranks as $rank)
+                                            {
+                                                echo '<option value="'.$rank['rid'].'">'.$rank['rank_name'].'</option>';
+                                            }
+                                        ?>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -239,8 +271,9 @@
     {
         $key_name = $_POST["key_name"];
 
-        insert_group_license_key_in_db($key_name);
-        write_log("Admin: " . $dashboard_username . " created key: " . $key_name, true);
+        insert_group_license_key_in_db($key_name, $_POST["rank"]);
+        write_log("Admin: " . $dashboard_username . " created key: " . $key_name .
+        "\nfor " . get_rank_name_by_rid($_POST["rank"]) . " rank", true);
         echo '<script>window.location.href = "../backend/dashboard/redirect.php?filename=../../dashboard/admin_license_manager.php";</script>';
         
     }
@@ -252,7 +285,7 @@
         $amount = 0;
         foreach (explode($seperator, $key_name) as $key)
         {
-            insert_group_license_key_in_db($key);
+            insert_group_license_key_in_db($key, $_POST["rank_mass"]);
             $amount++;
         }
         write_log("Admin: " . $dashboard_username . " created " . $amount . " keys", true); 

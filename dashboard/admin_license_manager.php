@@ -151,6 +151,7 @@
                                             <th>ID</th>
                                             <th>Key</th>
                                             <th>Used</th>
+                                            <th>Rank</th>
                                             <th>Actions</th>
                                         </tr>
                                         </thead><tbody>';
@@ -161,6 +162,7 @@
                                         <td>' . $key["id"] .'</td>
                                         <td>' . $key["key_name"] . '</td>
                                         <td>' . $key["used"] . '</td>
+                                        <td>' . get_rank_name_by_rid($key["rid"]) . '</td>
                                         <td><button onclick="confirm_remove(' .$key["id"] . ')" type="button" class="btn btn-danger w-md">Remove</button></td>
                                         </tr>';
                                         $i++;

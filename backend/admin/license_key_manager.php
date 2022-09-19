@@ -7,22 +7,22 @@ function get_license_keys()
 
     $license_keys = array();
 
-    $statement = $pdo->prepare("SELECT id, key_name, used FROM dashboard_group_license_keys");
+    $statement = $pdo->prepare("SELECT id, key_name, used, rid FROM dashboard_group_license_keys");
     $statement->execute();   
     while($row = $statement->fetch()) {
-        array_push($license_keys, array("id" => $row["id"], "key_name" => decrypt_data($row["key_name"], $key), "used" => $row["used"]));
+        array_push($license_keys, array("id" => $row["id"], "key_name" => decrypt_data($row["key_name"], $key), "used" => $row["used"], "rid" => $row["rid"]));
     }
 
     return $license_keys;
 }
 
-function insert_group_license_key_in_db($license_key)
+function insert_group_license_key_in_db($license_key, $rid)
 {
     include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/includes.php';
     include $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/config.php';
 
-    $statement = $pdo->prepare("INSERT INTO dashboard_group_license_keys (key_name) VALUES (?)");
-    $statement->execute(array(encrypt_data($license_key, $key)));   
+    $statement = $pdo->prepare("INSERT INTO dashboard_group_license_keys (key_name, rid) VALUES (?, ?)");
+    $statement->execute(array(encrypt_data($license_key, $key), $rid));   
 }
 
 ?>
