@@ -118,6 +118,9 @@
     {
         switch (false)
         {
+            case (!ip_is_banned($_SERVER['REMOTE_ADDR'])):
+                echo '<script>toastr.error("Your IP is banned from this service, come back tomorrow", "Error")</script>';
+                break;
             case (strlen($post_password) > 4 && strlen($post_username) > 3):
                 echo "<script>toastr.error('Input too short', 'Error')</script>";
                 break;
@@ -128,6 +131,7 @@
                     echo '<script>window.location.href = "dashboard.php";</script>';
                 break;
             default:
+                add_fail($_SERVER['REMOTE_ADDR']);
                 echo "<script>toastr.error('Wrong Username / Password', 'Error')</script>";
                 break;
         }

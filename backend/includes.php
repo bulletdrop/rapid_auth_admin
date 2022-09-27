@@ -9,6 +9,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/security/cooki
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/security/logs.php';
 
+include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/security/fail2ban.php';
+
 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/groups/products.php';
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/rapid_auth_admin/backend/users/authenticate_user.php';
